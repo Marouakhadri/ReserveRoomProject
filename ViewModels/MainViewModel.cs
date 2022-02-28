@@ -8,6 +8,6 @@ namespace ReserveRoom.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-       
+       public ViewModelBase viewModelBase { get; set; }
     }
 }
