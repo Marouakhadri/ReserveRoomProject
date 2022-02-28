@@ -12,7 +12,9 @@ namespace ReserveRoom.ViewModels
 
         public MainViewModel()
         {
-            CurrentView = new ViewModelBase();
+            //CurrentView = new MakeReservationViewModel();
+            CurrentView = new ReservationListingViewModel();
+
         }
     }
 }

@@ -35,9 +35,6 @@
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>-->
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>

@@ -24,6 +24,7 @@ namespace ReserveRoom.ViewModels
         public ICommand SubmitCommand { get; }
         public ICommand CancelCommand { get; }
 
+
         public string UserName
         {
             get
