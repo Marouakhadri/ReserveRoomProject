@@ -50,7 +50,7 @@
                 Text="Floor N"/>
             <TextBox 
                 Grid.Row="1" 
-                Grid.Column="0" 
+                Grid.Column="0"
                 Text="{Binding FloorNumber, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock 
                 Grid.Row="0"

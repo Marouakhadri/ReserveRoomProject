@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReserveRoom.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace ReserveRoom.ViewModels
 
         public MakeReservationViewModel()
         {
-
+            SubmitCommand = new MakeReservationCommand();
         }
 
         public ICommand SubmitCommand { get; }

@@ -1,4 +1,5 @@
-﻿using ReserveRoom.ViewModels;
+﻿using ReserveRoom.Models;
+using ReserveRoom.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,6 +15,13 @@ namespace ReserveRoom
     /// </summary>
     public partial class App : Application
     {
+        private readonly Holet hotel;
+
+        public App()
+        {
+            this.hotel = new Holet("Maroua's Hotel");
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
             MainWindow = new MainWindow()
