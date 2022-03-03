@@ -19,6 +19,7 @@ namespace ReserveRoom
 
         public App()
         {
+            // commit B
             this.hotel = new Holet("Maroua's Hotel");
         }
 
