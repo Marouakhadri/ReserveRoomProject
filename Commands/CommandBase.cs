@@ -13,7 +13,7 @@ namespace ReserveRoom.Commands
 
         public virtual bool CanExecute(object parameter)
         {
-            return true;
+            return false;
         }
 
        public abstract void Execute(object parameter);
