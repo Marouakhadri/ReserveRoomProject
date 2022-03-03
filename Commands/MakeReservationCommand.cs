@@ -11,6 +11,10 @@ namespace ReserveRoom.Commands
     {
         private Holet _hotel;
 
+        public MakeReservationCommand()
+        {
+        }
+
         public MakeReservationCommand(Holet hotel)
         {
             _hotel = hotel;
