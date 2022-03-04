@@ -16,7 +16,7 @@ namespace ReserveRoom.ViewModels
             //CurrentView = new MakeReservationViewModel();
             //CurrentView = new ReservationListingViewModel();
 
-             normalClass = new NormalClass();
+            normalClass = new NormalClass();
 
         }
     }

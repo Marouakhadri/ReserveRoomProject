@@ -12,8 +12,14 @@
         <viewmodels:MainViewModel/>
     </Window.DataContext>
     <Grid Margin="20 10" MaxWidth="600">
+<<<<<<< HEAD
         <!--<views:MakeReservationView DataContext="{Binding CurrentView}"/>-->
         <Grid.RowDefinitions>
+=======
+        <views:MakeReservationView DataContext="{Binding CurrentView}"/>
+        
+        <!--<Grid.RowDefinitions>
+>>>>>>> MarouasBranche
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -22,7 +28,12 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+<<<<<<< HEAD
         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding normalClass.Message}"/>
         <Button Grid.Row="1" Grid.Column="1" Width="150" Height="100" Content="ClickMe" Command="{Binding normalClass.ClickMeCommand}"  />
+=======
+        <TextBlock Grid.Row="0" Grid.Column="1" Width="auto" Text="je suis Maroua"/>
+        <Button Grid.Row="1" Grid.Column="1" Width="150" Height="100" Content="ClickMe" Command="{Binding normalClass.ClickMeCommand}"  />-->
+>>>>>>> MarouasBranche
     </Grid>
 </Window>

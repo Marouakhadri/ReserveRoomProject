@@ -28,15 +28,10 @@ namespace ReserveRoom.ViewModels
         {
 
             Message = "My Name is Maroua";
-            ClickMeCommand = new ClickMeCommand(GetDateTime);
 
         }
     
-        public DateTime GetDateTime(DateTime dateTime)
+        public void GetMessage()
         {
-            
-             this.Message = dateTime.ToString();
-            return DateTime.Now;
+            Message ="I'm a message without parameter and generic type and return type";
         }
-    }
-}
