@@ -15,12 +15,12 @@ namespace ReserveRoom
     /// </summary>
     public partial class App : Application
     {
-        private readonly Holet hotel;
+        private readonly Hotel hotel;
 
         public App()
         {
             // commit B
-            this.hotel = new Holet("Maroua's Hotel");
+            this.hotel = new Hotel("Maroua's Hotel");
         }
 
         protected override void OnStartup(StartupEventArgs e)

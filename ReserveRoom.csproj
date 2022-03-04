@@ -93,7 +93,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Holet.cs" />
+    <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\ReservationBook.cs" />
     <Compile Include="Models\RoomID.cs" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReserveRoom.Models
 {
-    public class Holet
+    public class Hotel
     {
         private readonly ReservationBook _reservationBook;
 
@@ -16,7 +16,7 @@ namespace ReserveRoom.Models
         /// </summary>
         /// <param name="name"></param>
 
-        public Holet(string name)
+        public Hotel(string name)
         {
             Name=name;
             _reservationBook = new ReservationBook();

@@ -9,13 +9,13 @@ namespace ReserveRoom.Commands
 {
     public class MakeReservationCommand : CommandBase
     {
-        private Holet _hotel;
+        private Hotel _hotel;
 
         public MakeReservationCommand()
         {
         }
 
-        public MakeReservationCommand(Holet hotel)
+        public MakeReservationCommand(Hotel hotel)
         {
             _hotel = hotel;
         }
