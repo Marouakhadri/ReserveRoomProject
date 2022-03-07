@@ -15,19 +15,19 @@ namespace ReserveRoom
     /// </summary>
     public partial class App : Application
     {
-        private readonly Hotel hotel;
+        private readonly Hotel _hotel;
 
         public App()
         {
             // commit B
-            this.hotel = new Hotel("Maroua's Hotel");
+            this._hotel = new Hotel("Maroua's Hotel");
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel()
+                DataContext = new MainViewModel(_hotel)
             };
 
             MainWindow.Show();

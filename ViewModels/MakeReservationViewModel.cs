@@ -1,4 +1,5 @@
 ﻿using ReserveRoom.Commands;
+using ReserveRoom.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace ReserveRoom.ViewModels
         private DateTime _startDate;
         private DateTime _endDate;
 
-        public MakeReservationViewModel()
+        public MakeReservationViewModel(Hotel hotel)
         {
-            SubmitCommand = new MakeReservationCommand();
+            SubmitCommand = new MakeReservationCommand(hotel);
         }
 
         public ICommand SubmitCommand { get; }
