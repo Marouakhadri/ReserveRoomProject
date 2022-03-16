@@ -11,6 +11,7 @@ namespace ReserveRoom.Commands
     {
 
         public delegate T MyAction<T>(T m);
+
         public delegate void MyAction();
         public MyAction<DateTime> MyStrAction { get; }
         public MyAction MyAction1 { get; }

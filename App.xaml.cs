@@ -27,7 +27,7 @@ namespace ReserveRoom
         {
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(_hotel)
+                DataContext = new MainViewModel()
             };
 
             MainWindow.Show();
