@@ -23,8 +23,8 @@ namespace ReserveRoom.ViewModels
             SubmitCommand = new MakeReservationCommand(this,hotel);
         }
 
-        public ICommand SubmitCommand { get; }
-        public ICommand CancelCommand { get; }
+        public ICommand SubmitCommand { get; set; }
+        public ICommand CancelCommand { get; set; }
 
 
         public string UserName

@@ -11,10 +11,11 @@ namespace ReserveRoom.Commands
     public class MakeReservationCommand : CommandBase
     {
         private readonly Hotel _hotel;
-        private  MakeReservationViewModel _makeReservationViewModel { get; }
+        private readonly MakeReservationViewModel _makeReservationViewModel;
 
-        public MakeReservationCommand()
+        public MakeReservationCommand( )
         {
+            
         }
 
         public MakeReservationCommand(MakeReservationViewModel makeReservationViewModel, Hotel hotel)
@@ -23,7 +24,10 @@ namespace ReserveRoom.Commands
             _hotel = hotel;
         }
 
-       
+        public override bool CanExecute(object parameter)
+        {
+            return true;
+        }
 
         public override void Execute(object parameter)
         {

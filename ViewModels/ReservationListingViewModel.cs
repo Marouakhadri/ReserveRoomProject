@@ -1,4 +1,5 @@
-﻿using ReserveRoom.Models;
+﻿using ReserveRoom.Commands;
+using ReserveRoom.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,9 +24,9 @@ namespace ReserveRoom.ViewModels
 
         private readonly ObservableCollection<ReservationViewModel> reservationList;
         public IEnumerable<ReservationViewModel> Reservations => reservationList;
-        public ICommand MakeReservationCommand { get; }
+        public ICommand NavigateToMakeReservationCommand { get; }
 
- 
+  
 
     }
 }
