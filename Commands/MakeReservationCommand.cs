@@ -1,4 +1,5 @@
 ﻿using ReserveRoom.Models;
+using ReserveRoom.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +10,26 @@ namespace ReserveRoom.Commands
 {
     public class MakeReservationCommand : CommandBase
     {
-        private Hotel _hotel;
+        private readonly Hotel _hotel;
+        private  MakeReservationViewModel _makeReservationViewModel { get; }
 
         public MakeReservationCommand()
         {
         }
 
-        public MakeReservationCommand(Hotel hotel)
+        public MakeReservationCommand(MakeReservationViewModel makeReservationViewModel, Hotel hotel)
         {
+            _makeReservationViewModel = makeReservationViewModel;
             _hotel = hotel;
         }
 
+       
+
         public override void Execute(object parameter)
         {
-            // commit A
+            Reservation reservation = new Reservation(new RoomID(_makeReservationViewModel.FloorNumber, _makeReservationViewModel.RoomNumber),
+                _makeReservationViewModel.UserName,_makeReservationViewModel.StartDate,_makeReservationViewModel.EndDate);
+            _hotel.MakeReservation(reservation);
 
         }
 

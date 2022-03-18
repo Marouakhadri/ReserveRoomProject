@@ -13,14 +13,14 @@ namespace ReserveRoom.ViewModels
     {
 
         private string _userName;
-        private string _floorNumber;
-        private string _roomNumber;
+        private int _floorNumber;
+        private int _roomNumber;
         private DateTime _startDate;
         private DateTime _endDate;
 
         public MakeReservationViewModel(Hotel hotel)
         {
-            SubmitCommand = new MakeReservationCommand(hotel);
+            SubmitCommand = new MakeReservationCommand(this,hotel);
         }
 
         public ICommand SubmitCommand { get; }
@@ -40,7 +40,7 @@ namespace ReserveRoom.ViewModels
             }
         }
 
-        public string FloorNumber
+        public int FloorNumber
         {
             get
             {
@@ -53,7 +53,7 @@ namespace ReserveRoom.ViewModels
             }
         }
 
-        public string RoomNumber
+        public int RoomNumber
         {
             get
             {
