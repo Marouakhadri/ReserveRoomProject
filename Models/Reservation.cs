@@ -28,9 +28,9 @@ namespace ReserveRoom.Models
       
         internal bool Conflicts(Reservation reservation)
         {
-            if (reservation.RoomID != RoomID)
+            if (!reservation.RoomID.Equals(RoomID))
             {
-                return false;
+                return true;
             }
 
             return reservation.StartTime < EndTime && reservation.EndTime > StartTime;

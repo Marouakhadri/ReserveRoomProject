@@ -1,10 +1,12 @@
-﻿using ReserveRoom.Models;
+﻿using ReserveRoom.Exceptions;
+using ReserveRoom.Models;
 using ReserveRoom.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ReserveRoom.Commands
 {
@@ -26,15 +28,23 @@ namespace ReserveRoom.Commands
 
         public override bool CanExecute(object parameter)
         {
-            return true;
+            return !string.IsNullOrEmpty(_makeReservationViewModel.UserName) && base.CanExecute(parameter);
         }
 
         public override void Execute(object parameter)
         {
             Reservation reservation = new Reservation(new RoomID(_makeReservationViewModel.FloorNumber, _makeReservationViewModel.RoomNumber),
                 _makeReservationViewModel.UserName,_makeReservationViewModel.StartDate,_makeReservationViewModel.EndDate);
-            _hotel.MakeReservation(reservation);
+            try
+            {
+                _hotel.MakeReservation(reservation);
 
+                MessageBox.Show("Sucssefuly reserved room", "sucsseful",MessageBoxButton.OK);
+            }
+            catch(ReservationConflictException)
+            {
+                MessageBox.Show("This room is already taken","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+            }
         }
 
     }
