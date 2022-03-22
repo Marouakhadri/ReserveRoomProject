@@ -3,6 +3,7 @@ using ReserveRoom.Models;
 using ReserveRoom.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,11 +25,29 @@ namespace ReserveRoom.Commands
         {
             _makeReservationViewModel = makeReservationViewModel;
             _hotel = hotel;
+            _makeReservationViewModel.PropertyChanged += OnViewModelChange;
         }
+
+        private void OnViewModelChange(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(MakeReservationViewModel.UserName) 
+                || e.PropertyName == nameof(MakeReservationViewModel.FloorNumber)
+                || e.PropertyName == nameof(MakeReservationViewModel.RoomNumber)
+                || e.PropertyName == nameof(MakeReservationViewModel.StartDate)
+                    
+                )
+            {
+                OnCanExecuteChanged();
+            }
+        }   
 
         public override bool CanExecute(object parameter)
         {
-            return !string.IsNullOrEmpty(_makeReservationViewModel.UserName) && base.CanExecute(parameter);
+            return !string.IsNullOrEmpty(_makeReservationViewModel.UserName) 
+                && _makeReservationViewModel.FloorNumber > 0
+                && _makeReservationViewModel.RoomNumber > 0
+                && _makeReservationViewModel.EndDate >= _makeReservationViewModel.StartDate
+                && base.CanExecute(parameter);
         }
 
         public override void Execute(object parameter)

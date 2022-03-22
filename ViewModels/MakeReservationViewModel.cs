@@ -21,6 +21,7 @@ namespace ReserveRoom.ViewModels
         public MakeReservationViewModel(Hotel hotel)
         {
             SubmitCommand = new MakeReservationCommand(this,hotel);
+            CancelCommand = new CancelMakeReservationCommand();
         }
 
         public ICommand SubmitCommand { get; set; }

@@ -26,7 +26,7 @@ namespace ReserveRoom.ViewModels
         public IEnumerable<ReservationViewModel> Reservations => reservationList;
         public ICommand NavigateToMakeReservationCommand { get; }
 
-  
+        //NavigateToMakeReservationCommand = new NavigationCommand();
 
     }
 }

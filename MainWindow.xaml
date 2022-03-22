@@ -16,7 +16,7 @@
    
     
     <Grid Margin="20 10" MaxWidth="600">
-        <views:MakeReservationView DataContext="{Binding  CurrentView}"/>
+        <views:ReservationListingView DataContext="{Binding  CurrentView}"/>
         
         <!--<Grid.RowDefinitions>
             <RowDefinition/>

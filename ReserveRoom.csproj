@@ -55,9 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\CancelMakeReservationCommand.cs" />
     <Compile Include="Commands\ClickMeCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\MakeReservationCommand.cs" />
+    <Compile Include="Commands\NavigationCommand.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MakeReservationViewModel.cs" />
     <Compile Include="ViewModels\NormalClass.cs" />
