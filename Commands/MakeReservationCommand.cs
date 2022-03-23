@@ -30,24 +30,26 @@ namespace ReserveRoom.Commands
 
         private void OnViewModelChange(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(MakeReservationViewModel.UserName) 
-                || e.PropertyName == nameof(MakeReservationViewModel.FloorNumber)
+            if (e.PropertyName == "UserName"
+                || e.PropertyName == nameof(_makeReservationViewModel.FloorNumber)
                 || e.PropertyName == nameof(MakeReservationViewModel.RoomNumber)
                 || e.PropertyName == nameof(MakeReservationViewModel.StartDate)
-                    
+
                 )
             {
                 OnCanExecuteChanged();
             }
-        }   
+        }
 
         public override bool CanExecute(object parameter)
         {
-            return !string.IsNullOrEmpty(_makeReservationViewModel.UserName) 
+
+            return string.IsNullOrEmpty(_makeReservationViewModel.UserName) == false
                 && _makeReservationViewModel.FloorNumber > 0
                 && _makeReservationViewModel.RoomNumber > 0
                 && _makeReservationViewModel.EndDate >= _makeReservationViewModel.StartDate
                 && base.CanExecute(parameter);
+
         }
 
         public override void Execute(object parameter)

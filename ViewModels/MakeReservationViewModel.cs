@@ -1,10 +1,8 @@
 ﻿using ReserveRoom.Commands;
+using ReserveRoom.Exceptions;
 using ReserveRoom.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ReserveRoom.ViewModels
@@ -17,14 +15,52 @@ namespace ReserveRoom.ViewModels
         private int _roomNumber;
         private DateTime _startDate;
         private DateTime _endDate;
+        private Hotel _hotel;
 
         public MakeReservationViewModel(Hotel hotel)
         {
-            SubmitCommand = new MakeReservationCommand(this,hotel);
-            CancelCommand = new CancelMakeReservationCommand();
+            //SubmitCommand = new MakeReservationCommand(this, hotel);
+            _hotel = hotel;
+            SubmitCommand = new DelegateCommand(SubmitedMethod, CanSubmited);
+            this.PropertyChanged += MakeReservationViewModel_PropertyChanged;
+
+
+          /// CancelCommand = new CancelMakeReservationCommand();
+
+
+
         }
 
-        public ICommand SubmitCommand { get; set; }
+        private void MakeReservationViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            SubmitCommand.OnCanExecuteChanged();    
+        }
+
+        public void SubmitedMethod()
+        {
+            Reservation reservation = new Reservation(new RoomID(FloorNumber, RoomNumber),
+                UserName, StartDate, EndDate);
+            try
+            {
+                _hotel.MakeReservation(reservation);
+
+                MessageBox.Show("Sucssefuly reserved room", "sucsseful", MessageBoxButton.OK);
+            }
+            catch (ReservationConflictException)
+            {
+                MessageBox.Show("This room is already taken", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        public bool CanSubmited()
+        {
+           return this.UserName.IsNotNullOrWhiteSpace()
+                && FloorNumber > 0
+                && RoomNumber > 0
+                && EndDate >= StartDate;
+        }
+
+
+        public DelegateCommand SubmitCommand { get; set; }
         public ICommand CancelCommand { get; set; }
 
 
@@ -38,6 +74,7 @@ namespace ReserveRoom.ViewModels
             {
                 _userName = value;
                 OnPropertyChanged(nameof(UserName));
+             
             }
         }
 
