@@ -3,6 +3,7 @@ using ReserveRoom.Exceptions;
 using ReserveRoom.Models;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace ReserveRoom.ViewModels
@@ -16,17 +17,9 @@ namespace ReserveRoom.ViewModels
         private DateTime _startDate;
         private DateTime _endDate;
         private Hotel _hotel;
-        private bool _isEnabled;
+        private bool _isFormValid=false;
 
-        public bool IsEnabled {
-            get {
-                return _isEnabled;
-            }
-            set {
-                _isEnabled = value;
-                OnPropertyChanged("IsEnable");
-            } 
-        }
+       
         public DelegateCommand SubmitCommand { get; set; }
         public DelegateCommand CancelCommand { get; set; }
 
@@ -34,7 +27,7 @@ namespace ReserveRoom.ViewModels
         {
             //SubmitCommand = new MakeReservationCommand(this, hotel);
             _hotel = hotel;
-            SubmitCommand = new DelegateCommand(SubmitedMethod,IsEnabled);
+            SubmitCommand = new DelegateCommand(SubmitedMethod);
             this.PropertyChanged += MakeReservationViewModel_PropertyChanged;
 
 
@@ -42,41 +35,61 @@ namespace ReserveRoom.ViewModels
 
         }
 
+        public bool IsFormValid
+        {
+            get
+            {
+                return _isFormValid;
+            }
+            set
+            {
+                _isFormValid = value;
+                OnPropertyChanged("IsFormValid");
+            }
+        } 
 
-        public void ckeckValidity()
+        public void CkeckValidity()
         {
             if (this.UserName.IsNotNullOrWhiteSpace()
-                && FloorNumber > 0
-                && RoomNumber > 0
-                && EndDate >= StartDate)
+               )
             {
-                IsEnabled = true;
+                IsFormValid = true;
             }else
             {
-                IsEnabled=false;
+                IsFormValid = false;
             }
 
         }
         private void MakeReservationViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            //SubmitCommand.OnCanExecuteChanged();
-            ckeckValidity();
+
+            if (e.PropertyName != nameof(IsFormValid))
+            {
+                CkeckValidity();
+            }
         }
 
         public void SubmitedMethod()
         {
-            Reservation reservation = new Reservation(new RoomID(FloorNumber, RoomNumber),
+            //if (this.IsFormValid)
+            //{
+                Reservation reservation = new Reservation(new RoomID(FloorNumber, RoomNumber),
                 UserName, StartDate, EndDate);
-            try
-            {
-                _hotel.MakeReservation(reservation);
+                try
+                {
+                    _hotel.MakeReservation(reservation);
 
-                MessageBox.Show("Sucssefuly reserved room", "sucsseful", MessageBoxButton.OK);
-            }
-            catch (ReservationConflictException)
-            {
-                MessageBox.Show("This room is already taken", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+                    MessageBox.Show("Sucssefuly reserved room", "sucsseful", MessageBoxButton.OK);
+                }
+                catch (ReservationConflictException)
+                {
+                    MessageBox.Show("This room is already taken", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Fi9 m3ana");
+            //}
         }
         public bool CanSubmited()
         {
@@ -95,10 +108,10 @@ namespace ReserveRoom.ViewModels
             }
             set
             {
+               
                 
                 _userName = value;
                 OnPropertyChanged(nameof(UserName));
-                //IsEnabled = true;
 
             }
         }

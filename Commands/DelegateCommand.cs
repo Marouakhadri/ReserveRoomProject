@@ -13,9 +13,12 @@ namespace ReserveRoom.Commands
         private bool canSubmited;
 
         public Action SubmitedMethod { get => submitedMethod; set => submitedMethod = value; }
-        public bool CanSubmited { get => canSubmited; set => canSubmited = value; }        
+        public bool CanSubmited { get => canSubmited; set => canSubmited = value; }
 
-        public DelegateCommand(Action submitedMethod, bool canSubmited)
+        //public DelegateCommand(Action submitedMethod) : this(submitedMethod, true)
+        //{
+        //}
+        public DelegateCommand(Action submitedMethod)
         {
             this.SubmitedMethod = submitedMethod;
             this.CanSubmited = canSubmited;
@@ -25,7 +28,7 @@ namespace ReserveRoom.Commands
 
         public virtual bool CanExecute(object parameter)
         {
-            return CanSubmited;
+            return true;
         }
 
         public void OnCanExecuteChanged()
