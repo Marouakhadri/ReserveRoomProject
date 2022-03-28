@@ -10,12 +10,12 @@ namespace ReserveRoom.Commands
     public class DelegateCommand : ICommand
     {
         private Action submitedMethod;
-        private Func<bool> canSubmited;
+        private bool canSubmited;
 
         public Action SubmitedMethod { get => submitedMethod; set => submitedMethod = value; }
-        public Func<bool> CanSubmited { get => canSubmited; set => canSubmited = value; }        
+        public bool CanSubmited { get => canSubmited; set => canSubmited = value; }        
 
-        public DelegateCommand(Action submitedMethod, Func<bool> canSubmited)
+        public DelegateCommand(Action submitedMethod, bool canSubmited)
         {
             this.SubmitedMethod = submitedMethod;
             this.CanSubmited = canSubmited;
@@ -25,7 +25,7 @@ namespace ReserveRoom.Commands
 
         public virtual bool CanExecute(object parameter)
         {
-            return CanSubmited();
+            return CanSubmited;
         }
 
         public void OnCanExecuteChanged()

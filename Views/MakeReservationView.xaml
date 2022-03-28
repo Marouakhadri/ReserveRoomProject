@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ReserveRoom.Views" 
-             xmlns:viewmodels="clr-namespace:ReserveRoom.ViewModels" 
-
+             xmlns:viewmodels="clr-namespace:ReserveRoom.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MakeReservationViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="15 0 0 0" Grid.IsSharedSizeScope="True">
@@ -100,7 +99,7 @@
         <StackPanel Grid.Row="4" 
                     Margin="0 25 0 0"
                     Orientation="Horizontal">
-            <Button Content="Submit" Command="{Binding SubmitCommand}"/>
+            <Button Content="Submit" IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Content="Cancel" Command="{Binding CancelCommand}" Margin="10 0 0 0"/>
         </StackPanel>
     </Grid>

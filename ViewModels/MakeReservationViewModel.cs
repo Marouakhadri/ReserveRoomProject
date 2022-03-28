@@ -16,24 +16,51 @@ namespace ReserveRoom.ViewModels
         private DateTime _startDate;
         private DateTime _endDate;
         private Hotel _hotel;
+        private bool _isEnabled;
+
+        public bool IsEnabled {
+            get {
+                return _isEnabled;
+            }
+            set {
+                _isEnabled = value;
+                OnPropertyChanged("IsEnable");
+            } 
+        }
+        public DelegateCommand SubmitCommand { get; set; }
+        public DelegateCommand CancelCommand { get; set; }
 
         public MakeReservationViewModel(Hotel hotel)
         {
             //SubmitCommand = new MakeReservationCommand(this, hotel);
             _hotel = hotel;
-            SubmitCommand = new DelegateCommand(SubmitedMethod, CanSubmited);
+            SubmitCommand = new DelegateCommand(SubmitedMethod,IsEnabled);
             this.PropertyChanged += MakeReservationViewModel_PropertyChanged;
 
 
-          /// CancelCommand = new CancelMakeReservationCommand();
-
-
+            /// CancelCommand = new CancelMakeReservationCommand();
 
         }
 
+
+        public void ckeckValidity()
+        {
+            if (this.UserName.IsNotNullOrWhiteSpace()
+                && FloorNumber > 0
+                && RoomNumber > 0
+                && EndDate >= StartDate)
+            {
+                IsEnabled = true;
+            }else
+            {
+                IsEnabled=false;
+            }
+
+        }
         private void MakeReservationViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            SubmitCommand.OnCanExecuteChanged();    
+            //SubmitCommand.OnCanExecuteChanged();
+            ckeckValidity();
         }
 
         public void SubmitedMethod()
@@ -56,12 +83,8 @@ namespace ReserveRoom.ViewModels
            return this.UserName.IsNotNullOrWhiteSpace()
                 && FloorNumber > 0
                 && RoomNumber > 0
-                && EndDate >= StartDate;
+                && EndDate > StartDate;
         }
-
-
-        public DelegateCommand SubmitCommand { get; set; }
-        public ICommand CancelCommand { get; set; }
 
 
         public string UserName
@@ -72,9 +95,11 @@ namespace ReserveRoom.ViewModels
             }
             set
             {
+                
                 _userName = value;
                 OnPropertyChanged(nameof(UserName));
-             
+                //IsEnabled = true;
+
             }
         }
 
@@ -130,5 +155,6 @@ namespace ReserveRoom.ViewModels
             }
         }
 
+        
     }
 }
