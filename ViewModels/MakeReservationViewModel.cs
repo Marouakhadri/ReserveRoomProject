@@ -51,7 +51,9 @@ namespace ReserveRoom.ViewModels
         public void CkeckValidity()
         {
             if (this.UserName.IsNotNullOrWhiteSpace()
-               )
+               && this.FloorNumber >0
+               && this.RoomNumber >0
+               && this.EndDate >= this.StartDate)
             {
                 IsFormValid = true;
             }else
@@ -91,13 +93,13 @@ namespace ReserveRoom.ViewModels
             //    MessageBox.Show("Fi9 m3ana");
             //}
         }
-        public bool CanSubmited()
-        {
-           return this.UserName.IsNotNullOrWhiteSpace()
-                && FloorNumber > 0
-                && RoomNumber > 0
-                && EndDate > StartDate;
-        }
+        //public bool CanSubmited()
+        //{
+        //   return this.UserName.IsNotNullOrWhiteSpace()
+        //        && FloorNumber > 0
+        //        && RoomNumber > 0
+        //        && EndDate > StartDate;
+        //}
 
 
         public string UserName
