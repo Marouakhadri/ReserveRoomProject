@@ -18,7 +18,7 @@ namespace ReserveRoom.ViewModels
         private DateTime _endDate;
         private Hotel _hotel;
         private bool _isFormValid=false;
-
+        private int _colorState;
        
         public DelegateCommand SubmitCommand { get; set; }
         public DelegateCommand CancelCommand { get; set; }
@@ -35,6 +35,33 @@ namespace ReserveRoom.ViewModels
 
         }
 
+        private string _messageError;
+        public string MessageError
+        {
+            get { return _messageError;  }
+            set 
+            {
+                if (_messageError != value)
+                {
+                    _messageError = value;
+                    OnPropertyChanged("MessageError");
+                }
+              
+            }
+        }
+        public int ColorState
+        {
+            get { return _colorState; }
+            set 
+            {
+                if (_colorState != value)
+                {
+                    _colorState = value; 
+                    OnPropertyChanged("ColorState"); 
+                }
+            }
+        }
+
         public bool IsFormValid
         {
             get
@@ -43,10 +70,27 @@ namespace ReserveRoom.ViewModels
             }
             set
             {
-                _isFormValid = value;
-                OnPropertyChanged("IsFormValid");
+                if (_isFormValid!= value)
+                {
+                    _isFormValid = value;
+                    OnPropertyChanged("IsFormValid");
+                }
             }
         } 
+        public void ValidateOnly<TProperty>(ref TProperty propertyName , System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            //if (e.PropertyName == propertyName)
+            //{
+            //    if (UserName.IsNotNullOrWhiteSpace())
+            //    {
+            //        MessageError = propertyName + " is required";
+            //    }
+            //    else
+            //    {
+            //        MessageError = "";
+            //    }
+            //}
+        }
 
         public void CkeckValidity()
         {
@@ -56,14 +100,28 @@ namespace ReserveRoom.ViewModels
                && this.EndDate >= this.StartDate)
             {
                 IsFormValid = true;
-            }else
+                ColorState = 1;
+            }
+            else
             {
                 IsFormValid = false;
+                ColorState = 0;
             }
 
         }
         private void MakeReservationViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            ValidateOnly(ref _userName, e);
+
+            if (!UserName.IsNotNullOrWhiteSpace())
+            {
+                MessageError =  " UserName is required";
+            }
+            else
+            {
+                MessageError = "";
+            }
+
 
             if (e.PropertyName != nameof(IsFormValid))
             {
@@ -73,8 +131,8 @@ namespace ReserveRoom.ViewModels
 
         public void SubmitedMethod()
         {
-            //if (this.IsFormValid)
-            //{
+            if (this.IsFormValid)
+            {
                 Reservation reservation = new Reservation(new RoomID(FloorNumber, RoomNumber),
                 UserName, StartDate, EndDate);
                 try
@@ -87,11 +145,11 @@ namespace ReserveRoom.ViewModels
                 {
                     MessageBox.Show("This room is already taken", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Fi9 m3ana");
-            //}
+            }
+            else
+            {
+                MessageBox.Show("Fi9 m3ana");
+            }
         }
         //public bool CanSubmited()
         //{

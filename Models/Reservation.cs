@@ -33,7 +33,7 @@ namespace ReserveRoom.Models
                 return true;
             }
 
-            return reservation.StartTime < EndTime && reservation.EndTime > StartTime;
+            return reservation.StartTime <= EndTime && reservation.EndTime >= StartTime;
         }
     }
 }

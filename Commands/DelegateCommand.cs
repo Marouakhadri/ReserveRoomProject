@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace ReserveRoom.Commands
 {
-    public class DelegateCommand : ICommand
+    public class DelegateCommand : CommandBase
     {
         private Action submitedMethod;
         private bool canSubmited;
@@ -24,18 +24,8 @@ namespace ReserveRoom.Commands
             this.CanSubmited = canSubmited;
         }
 
-        public event EventHandler CanExecuteChanged;
 
-        public virtual bool CanExecute(object parameter)
-        {
-            return true;
-        }
-
-        public void OnCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, new EventArgs());
-        }
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             SubmitedMethod();
         }

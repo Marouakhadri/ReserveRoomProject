@@ -61,7 +61,10 @@
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\MakeReservationCommand.cs" />
     <Compile Include="Commands\NavigationCommand.cs" />
+    <Compile Include="Converters\ColorCenverter.cs" />
+    <Compile Include="Converters\ConverterBase.cs" />
     <Compile Include="Converters\UIConverter.cs" />
+    <Compile Include="Converters\VisbilityConverter.cs" />
     <Compile Include="Utils\Extensions\StringExtensions.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MakeReservationViewModel.cs" />
