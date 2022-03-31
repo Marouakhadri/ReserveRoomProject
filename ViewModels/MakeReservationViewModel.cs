@@ -18,6 +18,7 @@ namespace ReserveRoom.ViewModels
         private DateTime _endDate;
         private Hotel _hotel;
         private bool _isFormValid=false;
+        private string _messageError = " UserName is required";
         private int _colorState;
        
         public DelegateCommand SubmitCommand { get; set; }
@@ -35,7 +36,6 @@ namespace ReserveRoom.ViewModels
 
         }
 
-        private string _messageError;
         public string MessageError
         {
             get { return _messageError;  }
@@ -77,8 +77,8 @@ namespace ReserveRoom.ViewModels
                 }
             }
         } 
-        public void ValidateOnly<TProperty>(ref TProperty propertyName , System.ComponentModel.PropertyChangedEventArgs e)
-        {
+        //public void ValidateOnly<TProperty>(ref TProperty propertyName , System.ComponentModel.PropertyChangedEventArgs e)
+        //{
             //if (e.PropertyName == propertyName)
             //{
             //    if (UserName.IsNotNullOrWhiteSpace())
@@ -90,13 +90,13 @@ namespace ReserveRoom.ViewModels
             //        MessageError = "";
             //    }
             //}
-        }
+        //}
 
         public void CkeckValidity()
         {
             if (this.UserName.IsNotNullOrWhiteSpace()
-               && this.FloorNumber >0
-               && this.RoomNumber >0
+               && this.FloorNumber != 0
+               && this.RoomNumber != 0
                && this.EndDate >= this.StartDate)
             {
                 IsFormValid = true;
@@ -111,7 +111,7 @@ namespace ReserveRoom.ViewModels
         }
         private void MakeReservationViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            ValidateOnly(ref _userName, e);
+            //ValidateOnly(ref _userName, e);
 
             if (!UserName.IsNotNullOrWhiteSpace())
             {
@@ -121,7 +121,6 @@ namespace ReserveRoom.ViewModels
             {
                 MessageError = "";
             }
-
 
             if (e.PropertyName != nameof(IsFormValid))
             {
@@ -168,11 +167,8 @@ namespace ReserveRoom.ViewModels
             }
             set
             {
-               
-                
                 _userName = value;
                 OnPropertyChanged(nameof(UserName));
-
             }
         }
 
