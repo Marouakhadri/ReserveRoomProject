@@ -23,16 +23,16 @@ namespace ReserveRoom.ViewModels
         private int _colorState;
        
         public DelegateCommand SubmitCommand { get; set; }
-        public DelegateCommand CancelCommand { get; set; }
+        public NavigationCommand CancelCommand { get; set; }
 
-        public MakeReservationViewModel(Hotel hotel)
+        public MakeReservationViewModel(Hotel hotel, NavigationStore navigationStore, Func<ReservationListingViewModel> creatReservationListingViewModel)
         {
             //SubmitCommand = new MakeReservationCommand(this, hotel);
             _hotel = hotel;
             SubmitCommand = new DelegateCommand(SubmitedMethod);
             this.PropertyChanged += MakeReservationViewModel_PropertyChanged;
 
-            CancelCommand = new  DelegateCommand(ReservationCanceled,true);
+            CancelCommand = new  NavigationCommand(navigationStore, creatReservationListingViewModel);
             /// CancelCommand = new CancelMakeReservationCommand();
 
         }
@@ -41,7 +41,7 @@ namespace ReserveRoom.ViewModels
         public void ReservationCanceled()
         {
 
-            _navigationStore.CurrentView = new ReservationListingViewModel(_navigationStore);
+            _navigationStore.CurrentView = new MakeReservationViewModel(_hotel);
         }
         public string MessageError
         {

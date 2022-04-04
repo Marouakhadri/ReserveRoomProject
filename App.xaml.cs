@@ -38,5 +38,10 @@ namespace ReserveRoom
 
             base.OnStartup(e);
         }
+
+        private  ReservationListingViewModel reservationListingView()
+        {
+            _navigationStore.CurrentView = new ReservationListingViewModel(NavigationStore navigationStore);
+        }
     }
 }

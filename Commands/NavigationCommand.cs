@@ -12,14 +12,16 @@ namespace ReserveRoom.Commands
 
     {
          private readonly NavigationStore _navigationStore;
+        private readonly Func<ViewModelBase> _creatViewModel;
 
-         public NavigationCommand(NavigationStore navigationStore)
+         public NavigationCommand(NavigationStore navigationStore, Func<ViewModelBase> CreatViewModel)
          {
             _navigationStore = navigationStore;
+            _creatViewModel = CreatViewModel;
          }
-         public override void Execute(object parameter)
+         public override void Execute(object parameter) 
          {
-            _navigationStore.CurrentView = new MakeReservationViewModel(new Models.Hotel(""));
+            _navigationStore.CurrentView = _creatViewModel();
          }
     }
 }
