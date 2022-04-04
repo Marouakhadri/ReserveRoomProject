@@ -11,23 +11,21 @@
         Title="Reservoom" Height="450" Width="800">
     <!--<Window.DataContext>
         <viewmodels:MainViewModel/>
-    </Window.DataContext>-->
+    </Window.DataContext>
+     <views:MakeReservationView DataContext="{Binding  CurrentView}"/> -->
 
-   
     
     <Grid Margin="20 10" MaxWidth="600">
-        <views:MakeReservationView DataContext="{Binding  CurrentView}"/>
-        
-        <!--<Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="1"  Text="{Binding normalClass.Message}"/>
-        <Button Grid.Row="1" Grid.Column="1" Width="150" Height="100" Content="ClickMe" Command="{Binding normalClass.ClickMeCommand}"  />-->
+       
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type viewmodels:MakeReservationViewModel}">
+                <views:MakeReservationView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ReservationListingViewModel}">
+                <views:ReservationListingView/>
+            </DataTemplate>
+        </Grid.Resources>
+
+        <ContentControl Content="{Binding CurrentView }"/>
     </Grid>
 </Window>
