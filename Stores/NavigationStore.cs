@@ -14,7 +14,18 @@ namespace ReserveRoom.Stores
         public ViewModelBase CurrentView 
         {
             get => _currentView;
-            set=> _currentView = value;
+            set
+            {
+                _currentView = value;
+                OnCurrentViewModelChanged();
+            } 
+        }
+
+        public event Action CurrentViewModelChanged;
+
+        public void OnCurrentViewModelChanged()
+        {
+            CurrentViewModelChanged?.Invoke();
         }
     }
 }

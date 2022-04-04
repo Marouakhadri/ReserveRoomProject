@@ -1,5 +1,6 @@
 ﻿using ReserveRoom.Commands;
 using ReserveRoom.Models;
+using ReserveRoom.Stores;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,8 +13,10 @@ namespace ReserveRoom.ViewModels
 {
     public class ReservationListingViewModel : ViewModelBase
     {
-        public ReservationListingViewModel()
+        public ReservationListingViewModel(NavigationStore navigationStore)
         {
+            NavigateToMakeReservationCommand = new NavigationCommand(navigationStore);
+
             reservationList = new ObservableCollection<ReservationViewModel>();
 
             reservationList.Add(new ReservationViewModel(new Reservation(new RoomID(1, 4), "Maroua", DateTime.Now, DateTime.Now)));
@@ -24,9 +27,7 @@ namespace ReserveRoom.ViewModels
 
         private readonly ObservableCollection<ReservationViewModel> reservationList;
         public IEnumerable<ReservationViewModel> Reservations => reservationList;
-        public ICommand NavigateToMakeReservationCommand { get; }
-
-        //NavigateToMakeReservationCommand = new NavigationCommand();
+        public NavigationCommand NavigateToMakeReservationCommand { get; }
 
     }
 }

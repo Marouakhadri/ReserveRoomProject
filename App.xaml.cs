@@ -28,6 +28,7 @@ namespace ReserveRoom
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            _navigationStore.CurrentView = new ReservationListingViewModel(_navigationStore);
             MainWindow = new MainWindow()
             {
                 DataContext = new MainViewModel(_navigationStore)

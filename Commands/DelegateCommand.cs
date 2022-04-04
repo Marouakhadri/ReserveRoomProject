@@ -23,6 +23,12 @@ namespace ReserveRoom.Commands
             this.SubmitedMethod = submitedMethod;
             this.CanSubmited = canSubmited;
         }
+        public DelegateCommand(Action submitedMethod,bool tr=true)
+        {
+            this.SubmitedMethod = submitedMethod;
+            this.CanSubmited = canSubmited;
+        }
+
 
 
         public override void Execute(object parameter)

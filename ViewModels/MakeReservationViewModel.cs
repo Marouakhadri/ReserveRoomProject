@@ -1,6 +1,7 @@
 ﻿using ReserveRoom.Commands;
 using ReserveRoom.Exceptions;
 using ReserveRoom.Models;
+using ReserveRoom.Stores;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,11 +32,17 @@ namespace ReserveRoom.ViewModels
             SubmitCommand = new DelegateCommand(SubmitedMethod);
             this.PropertyChanged += MakeReservationViewModel_PropertyChanged;
 
-
+            CancelCommand = new  DelegateCommand(ReservationCanceled,true);
             /// CancelCommand = new CancelMakeReservationCommand();
 
         }
 
+        private readonly NavigationStore _navigationStore;
+        public void ReservationCanceled()
+        {
+
+            _navigationStore.CurrentView = new ReservationListingViewModel(_navigationStore);
+        }
         public string MessageError
         {
             get { return _messageError;  }
