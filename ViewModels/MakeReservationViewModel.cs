@@ -38,11 +38,11 @@ namespace ReserveRoom.ViewModels
         }
 
         private readonly NavigationStore _navigationStore;
-        public void ReservationCanceled()
-        {
+        //public void ReservationCanceled()
+        //{
 
-            _navigationStore.CurrentView = new MakeReservationViewModel(_hotel);
-        }
+        //    _navigationStore.CurrentView = creatReservationListingViewModel;
+        //}
         public string MessageError
         {
             get { return _messageError;  }

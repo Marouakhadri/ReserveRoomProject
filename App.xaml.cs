@@ -28,7 +28,7 @@ namespace ReserveRoom
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            _navigationStore.CurrentView = new ReservationListingViewModel(_navigationStore);
+            _navigationStore.CurrentView = CreatReservationListingView();
             MainWindow = new MainWindow()
             {
                 DataContext = new MainViewModel(_navigationStore)
@@ -39,9 +39,14 @@ namespace ReserveRoom
             base.OnStartup(e);
         }
 
-        private  ReservationListingViewModel reservationListingView()
+        private  ReservationListingViewModel CreatReservationListingView()
         {
-            _navigationStore.CurrentView = new ReservationListingViewModel(NavigationStore navigationStore);
+            return new ReservationListingViewModel(_navigationStore, MakeReservationView);
+        }
+
+        private MakeReservationViewModel MakeReservationView()
+        {
+            return new MakeReservationViewModel(_hotel,_navigationStore, CreatReservationListingView);
         }
     }
 }
