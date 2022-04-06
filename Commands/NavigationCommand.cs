@@ -8,20 +8,22 @@ using System.Threading.Tasks;
 
 namespace ReserveRoom.Commands
 {
-    public class NavigationCommand : CommandBase
+    public class NavigationCommand 
 
     {
-         private readonly NavigationStore _navigationStore;
-        private readonly Func<ViewModelBase> _creatViewModel;
+         //private readonly NavigationStore _navigationStore;
 
-         public NavigationCommand(NavigationStore navigationStore, Func<ViewModelBase> CreatViewModel)
-         {
-            _navigationStore = navigationStore;
-            _creatViewModel = CreatViewModel;
-         }
-         public override void Execute(object parameter) 
-         {
-            _navigationStore.CurrentView = _creatViewModel();
-         }
+         //private readonly Func<ViewModelBase> _creatViewModel;
+
+         //public NavigationCommand(NavigationStore navigationStore, Func<ViewModelBase> CreatViewModel)
+         //{
+         //   _navigationStore = navigationStore;
+         //   _creatViewModel = CreatViewModel;
+         //}
+         //public override void Execute(object parameter) 
+         //{
+         //   _navigationStore.CurrentView = _creatViewModel();
+         //}
+
     }
 }

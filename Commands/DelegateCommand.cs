@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ReserveRoom.Stores;
+using ReserveRoom.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +11,10 @@ namespace ReserveRoom.Commands
 {
     public class DelegateCommand : CommandBase
     {
+        private readonly NavigationStore _navigationStore;
+
+        private readonly Func<ViewModelBase> _creatViewModel;
+
         private Action submitedMethod;
         private bool canSubmited;
 
@@ -17,23 +23,33 @@ namespace ReserveRoom.Commands
 
         //public DelegateCommand(Action submitedMethod) : this(submitedMethod, true)
         //{
+
         //}
+
+        public DelegateCommand (NavigationStore navigationStore, Func<ViewModelBase> CreatViewModel)
+        {
+            _navigationStore = navigationStore;
+            _creatViewModel = CreatViewModel;
+        }
         public DelegateCommand(Action submitedMethod)
         {
             this.SubmitedMethod = submitedMethod;
             this.CanSubmited = canSubmited;
         }
-        public DelegateCommand(Action submitedMethod,bool tr=true)
-        {
-            this.SubmitedMethod = submitedMethod;
-            this.CanSubmited = canSubmited;
-        }
 
-
+ 
 
         public override void Execute(object parameter)
         {
-            SubmitedMethod();
+            if (SubmitedMethod != null)
+            {
+                SubmitedMethod();
+            }else
+            {
+                _navigationStore.CurrentView = _creatViewModel();
+            }
+
+           
         }
     }
 }

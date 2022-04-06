@@ -15,7 +15,7 @@ namespace ReserveRoom.ViewModels
     {
         public ReservationListingViewModel(NavigationStore navigationStore, Func<MakeReservationViewModel> creatMakeReservationViewModel)
         {
-            NavigateToMakeReservationCommand = new NavigationCommand(navigationStore, creatMakeReservationViewModel);
+            NavigateToMakeReservationCommand = new DelegateCommand(navigationStore, creatMakeReservationViewModel);
 
             reservationList = new ObservableCollection<ReservationViewModel>();
 
@@ -27,7 +27,7 @@ namespace ReserveRoom.ViewModels
 
         private readonly ObservableCollection<ReservationViewModel> reservationList;
         public IEnumerable<ReservationViewModel> Reservations => reservationList;
-        public NavigationCommand NavigateToMakeReservationCommand { get; }
+        public DelegateCommand NavigateToMakeReservationCommand { get; }
 
     }
 }
