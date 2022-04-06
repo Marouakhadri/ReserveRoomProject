@@ -39,14 +39,15 @@ namespace ReserveRoom
             base.OnStartup(e);
         }
 
+        private MakeReservationViewModel MakeReservationView()
+        {
+            return new MakeReservationViewModel(_hotel, _navigationStore, CreatReservationListingView);
+        }
         private  ReservationListingViewModel CreatReservationListingView()
         {
             return new ReservationListingViewModel(_navigationStore, MakeReservationView);
         }
 
-        private MakeReservationViewModel MakeReservationView()
-        {
-            return new MakeReservationViewModel(_hotel,_navigationStore, CreatReservationListingView);
-        }
+       
     }
 }

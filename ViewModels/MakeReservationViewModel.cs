@@ -27,22 +27,14 @@ namespace ReserveRoom.ViewModels
 
         public MakeReservationViewModel(Hotel hotel, NavigationStore navigationStore, Func<ReservationListingViewModel> creatReservationListingViewModel)
         {
-            //SubmitCommand = new MakeReservationCommand(this, hotel);
             _hotel = hotel;
             SubmitCommand = new DelegateCommand(SubmitedMethod);
             this.PropertyChanged += MakeReservationViewModel_PropertyChanged;
-
             CancelCommand = new  NavigationCommand(navigationStore, creatReservationListingViewModel);
-            /// CancelCommand = new CancelMakeReservationCommand();
 
         }
 
-        private readonly NavigationStore _navigationStore;
-        //public void ReservationCanceled()
-        //{
-
-        //    _navigationStore.CurrentView = creatReservationListingViewModel;
-        //}
+        //private readonly NavigationStore _navigationStore;
         public string MessageError
         {
             get { return _messageError;  }
@@ -84,20 +76,6 @@ namespace ReserveRoom.ViewModels
                 }
             }
         } 
-        //public void ValidateOnly<TProperty>(ref TProperty propertyName , System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-            //if (e.PropertyName == propertyName)
-            //{
-            //    if (UserName.IsNotNullOrWhiteSpace())
-            //    {
-            //        MessageError = propertyName + " is required";
-            //    }
-            //    else
-            //    {
-            //        MessageError = "";
-            //    }
-            //}
-        //}
 
         public void CkeckValidity()
         {
@@ -118,7 +96,6 @@ namespace ReserveRoom.ViewModels
         }
         private void MakeReservationViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            //ValidateOnly(ref _userName, e);
 
             if (!UserName.IsNotNullOrWhiteSpace())
             {
@@ -157,14 +134,6 @@ namespace ReserveRoom.ViewModels
                 MessageBox.Show("Fi9 m3ana");
             }
         }
-        //public bool CanSubmited()
-        //{
-        //   return this.UserName.IsNotNullOrWhiteSpace()
-        //        && FloorNumber > 0
-        //        && RoomNumber > 0
-        //        && EndDate > StartDate;
-        //}
-
 
         public string UserName
         {
