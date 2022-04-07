@@ -30,13 +30,21 @@ namespace ReserveRoom.ViewModels
             _hotel = hotel;
             SubmitCommand = new DelegateCommand(SubmitedMethod);
             this.PropertyChanged += MakeReservationViewModel_PropertyChanged;
-            CancelCommand = new DelegateCommand(navigationStore, creatReservationListingViewModel);
-
+            CancelCommand = new DelegateCommand(CancelMethod);
+            _navigationStore = navigationStore;
+            _creatViewModel = creatReservationListingViewModel;
         }
 
- 
 
-        //private readonly NavigationStore _navigationStore;
+        private readonly NavigationStore _navigationStore;
+
+        private readonly Func<ViewModelBase> _creatViewModel;
+
+        public void CancelMethod()
+        {
+            _navigationStore.CurrentView = _creatViewModel();
+        }
+
         public string MessageError
         {
             get { return _messageError;  }
@@ -158,7 +166,7 @@ namespace ReserveRoom.ViewModels
             }
             set
             {
-                _floorNumber = value;
+                _floorNumber = Convert.ToInt32(value);
                 OnPropertyChanged(nameof(FloorNumber));
             }
         }

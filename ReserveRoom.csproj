@@ -62,6 +62,7 @@
     <Compile Include="Commands\NavigationCommand.cs" />
     <Compile Include="Converters\ColorCenverter.cs" />
     <Compile Include="Converters\ConverterBase.cs" />
+    <Compile Include="Converters\StringConverter.cs" />
     <Compile Include="Converters\UIConverter.cs" />
     <Compile Include="Converters\VisbilityConverter.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
