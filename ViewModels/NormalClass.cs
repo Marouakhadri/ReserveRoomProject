@@ -29,7 +29,7 @@ namespace ReserveRoom.ViewModels
         public NormalClass()
         {
             //GetMessage();
-            ClickMeCommand = new ClickMeCommand(GetMessage);
+            //ClickMeCommand = new ClickMeCommand(GetMessage);
             Message = "My Name is Maroua";
 
         }

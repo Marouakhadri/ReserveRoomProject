@@ -55,11 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\ClickMeCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
-    <Compile Include="Commands\MakeReservationCommand.cs" />
-    <Compile Include="Commands\NavigationCommand.cs" />
     <Compile Include="Converters\ColorCenverter.cs" />
     <Compile Include="Converters\ConverterBase.cs" />
     <Compile Include="Converters\StringConverter.cs" />

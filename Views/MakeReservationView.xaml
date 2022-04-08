@@ -74,7 +74,7 @@
             <TextBox 
                 Grid.Row="1"
                 Grid.Column="1"
-                Text="{Binding RoomNumber, UpdateSourceTrigger=PropertyChanged}" 
+                Text="{Binding RoomNumber,Converter={StaticResource MyStringConverter}, UpdateSourceTrigger=PropertyChanged}" 
                 Margin="10 0 0 0" />
         </Grid>
 

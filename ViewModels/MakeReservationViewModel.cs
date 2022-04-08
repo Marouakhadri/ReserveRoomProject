@@ -13,10 +13,10 @@ namespace ReserveRoom.ViewModels
     {
 
         private string _userName;
-        private int _floorNumber;
+        private int? _floorNumber;
         private int _roomNumber;
-        private DateTime _startDate;
-        private DateTime _endDate;
+        private DateTime _startDate= DateTime.Now;
+        private DateTime _endDate = DateTime.Now.AddDays(1);
         private Hotel _hotel;
         private bool _isFormValid=false;
         private string _messageError = " UserName is required";
@@ -126,7 +126,7 @@ namespace ReserveRoom.ViewModels
         {
             if (this.IsFormValid)
             {
-                Reservation reservation = new Reservation(new RoomID(FloorNumber, RoomNumber),
+                Reservation reservation = new Reservation(new RoomID(FloorNumber.Value, RoomNumber),
                 UserName, StartDate, EndDate);
                 try
                 {
@@ -158,7 +158,7 @@ namespace ReserveRoom.ViewModels
             }
         }
 
-        public int FloorNumber
+        public int? FloorNumber
         {
             get
             {
