@@ -11,16 +11,19 @@ namespace ReserveRoom.Converters
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            int isTrue;
-            if (value != null)
-            ////return isTrue = value;
-
-       
+                int myInt = (int)value;
+                return myInt;
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            if (value == null )
+            {
+                return 0;
+            }
+
+            int myInt = int.Parse(value.ToString());
+            return myInt;
         }
     }
 }

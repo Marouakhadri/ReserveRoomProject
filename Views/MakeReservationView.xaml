@@ -11,6 +11,7 @@
     <UserControl.Resources>
         <c:VisbilityConverter x:Key="MyVisbility"/>
         <c:ColorCenverter x:Key="MyColorState"/>
+        <c:StringConverter x:Key="MyStringConverter"/>
     </UserControl.Resources>
     <Grid Margin="15 0 0 0" Grid.IsSharedSizeScope="True">
         <Grid.RowDefinitions>
@@ -64,7 +65,7 @@
             <TextBox 
                 Grid.Row="1" 
                 Grid.Column="0"
-                Text="{Binding FloorNumber, UpdateSourceTrigger=PropertyChanged}" />
+                Text="{Binding FloorNumber, Converter={StaticResource MyStringConverter}, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock 
                 Grid.Row="0"
                 Grid.Column="1" 

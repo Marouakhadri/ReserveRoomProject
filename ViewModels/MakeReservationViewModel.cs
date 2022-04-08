@@ -166,7 +166,7 @@ namespace ReserveRoom.ViewModels
             }
             set
             {
-                _floorNumber = Convert.ToInt32(value);
+             _floorNumber = value;
                 OnPropertyChanged(nameof(FloorNumber));
             }
         }
