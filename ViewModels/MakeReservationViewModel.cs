@@ -14,13 +14,13 @@ namespace ReserveRoom.ViewModels
 
         private string _userName;
         private int? _floorNumber;
-        private int _roomNumber;
+        private int? _roomNumber;
         private DateTime _startDate= DateTime.Now;
         private DateTime _endDate = DateTime.Now.AddDays(1);
         private Hotel _hotel;
         private bool _isFormValid=false;
         private string _messageError = " UserName is required";
-        private int _colorState;
+        private int _colorState=1;
        
         public DelegateCommand SubmitCommand { get; set; }
         public DelegateCommand CancelCommand { get; set; }
@@ -89,32 +89,48 @@ namespace ReserveRoom.ViewModels
 
         public void CkeckValidity()
         {
-            if (this.UserName.IsNotNullOrWhiteSpace()
-               && this.FloorNumber != 0
-               && this.RoomNumber != 0
-               && this.EndDate >= this.StartDate)
+            if (!this.UserName.IsNotNullOrWhiteSpace())
             {
-                IsFormValid = true;
+                MessageError = " UserName is required";
                 ColorState = 1;
             }
             else
             {
-                IsFormValid = false;
+                MessageError = "UserName is valid";
                 ColorState = 0;
+            }
+            if (this.UserName.IsNotNullOrWhiteSpace()
+               && this.FloorNumber != null
+               && this.RoomNumber != null
+               && this.EndDate >= this.StartDate)
+            {
+                IsFormValid = true;
+               
+            }
+            else
+            {
+                IsFormValid = false;
             }
 
         }
         private void MakeReservationViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-
-            if (!UserName.IsNotNullOrWhiteSpace())
-            {
-                MessageError =  " UserName is required";
-            }
-            else
-            {
-                MessageError = "";
-            }
+            //if (e.PropertyName != nameof(ColorState))
+            //{
+            //    if (!UserName.IsNotNullOrWhiteSpace())
+            //    {
+                    
+            //        MessageError = " UserName is required";
+                  
+            //    }
+            //    else
+            //    {
+                   
+            //        MessageError = "UserName is valid";
+                    
+            //    }
+            //}
+           
 
             if (e.PropertyName != nameof(IsFormValid))
             {
@@ -126,7 +142,7 @@ namespace ReserveRoom.ViewModels
         {
             if (this.IsFormValid)
             {
-                Reservation reservation = new Reservation(new RoomID(FloorNumber.Value, RoomNumber),
+                Reservation reservation = new Reservation(new RoomID(FloorNumber.Value, RoomNumber.Value),
                 UserName, StartDate, EndDate);
                 try
                 {
@@ -155,6 +171,7 @@ namespace ReserveRoom.ViewModels
             {
                 _userName = value;
                 OnPropertyChanged(nameof(UserName));
+                
             }
         }
 
@@ -166,12 +183,13 @@ namespace ReserveRoom.ViewModels
             }
             set
             {
-             _floorNumber = value;
+                
+                _floorNumber = value;
                 OnPropertyChanged(nameof(FloorNumber));
             }
         }
 
-        public int RoomNumber
+        public int? RoomNumber
         {
             get
             {

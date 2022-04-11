@@ -65,6 +65,7 @@
             <TextBox 
                 Grid.Row="1" 
                 Grid.Column="0"
+                PreviewTextInput="NumberValidationTextBox"
                 Text="{Binding FloorNumber, Converter={StaticResource MyStringConverter}, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock 
                 Grid.Row="0"
@@ -74,7 +75,8 @@
             <TextBox 
                 Grid.Row="1"
                 Grid.Column="1"
-                Text="{Binding RoomNumber,Converter={StaticResource MyStringConverter}, UpdateSourceTrigger=PropertyChanged}" 
+                PreviewTextInput="NumberValidationTextBox"
+                Text="{Binding RoomNumber, Converter={StaticResource MyStringConverter}, UpdateSourceTrigger=PropertyChanged}" 
                 Margin="10 0 0 0" />
         </Grid>
 

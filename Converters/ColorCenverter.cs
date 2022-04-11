@@ -20,11 +20,11 @@ namespace ReserveRoom.Converters
             Color Yellow = Color.FromRgb(255, 255, 0);
             int state = (int)value;
 
-            if (state==0)
+            if (state==1)
             {
                 return "Red";
             }
-            else if (state==1)
+            else if (state==0)
             {
                 return "Green";
             }
