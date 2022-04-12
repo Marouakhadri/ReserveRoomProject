@@ -16,6 +16,7 @@ namespace ReserveRoom.Converters
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+
             var str = (string)value;
 
             if (!str.IsNotNullOrWhiteSpace())

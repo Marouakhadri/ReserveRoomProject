@@ -62,6 +62,7 @@
     <Compile Include="Converters\StringConverter.cs" />
     <Compile Include="Converters\UIConverter.cs" />
     <Compile Include="Converters\VisbilityConverter.cs" />
+    <Compile Include="CustomControls\NumberTextBox.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="Utils\Extensions\StringExtensions.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

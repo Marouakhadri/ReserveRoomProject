@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ReserveRoom.Views" 
               xmlns:c="clr-namespace:ReserveRoom.Converters" 
-             xmlns:viewmodels="clr-namespace:ReserveRoom.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MakeReservationViewModel}"
+             xmlns:viewmodels="clr-namespace:ReserveRoom.ViewModels" xmlns:customcontrols="clr-namespace:ReserveRoom.CustomControls" d:DataContext="{d:DesignInstance Type=viewmodels:MakeReservationViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -62,21 +62,19 @@
                 Grid.Column="0"
                 Margin="0 5 0 0"
                 Text="Floor N"/>
-            <TextBox 
+            <customcontrols:NumberTextBox 
                 Grid.Row="1" 
                 Grid.Column="0"
-                PreviewTextInput="NumberValidationTextBox"
-                Text="{Binding FloorNumber, Converter={StaticResource MyStringConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                Number="{Binding FloorNumber, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock 
                 Grid.Row="0"
                 Grid.Column="1" 
                 Text="Room N"
                 Margin="10 5 0 0"/>
-            <TextBox 
+            <customcontrols:NumberTextBox 
                 Grid.Row="1"
                 Grid.Column="1"
-                PreviewTextInput="NumberValidationTextBox"
-                Text="{Binding RoomNumber, Converter={StaticResource MyStringConverter}, UpdateSourceTrigger=PropertyChanged}" 
+                Number="{Binding RoomNumber, UpdateSourceTrigger=PropertyChanged}" 
                 Margin="10 0 0 0" />
         </Grid>
 

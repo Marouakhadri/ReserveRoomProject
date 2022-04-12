@@ -3,6 +3,7 @@ using ReserveRoom.Exceptions;
 using ReserveRoom.Models;
 using ReserveRoom.Stores;
 using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -182,10 +183,26 @@ namespace ReserveRoom.ViewModels
                 return _floorNumber;
             }
             set
-            {
+         {
                 
                 _floorNumber = value;
-                OnPropertyChanged(nameof(FloorNumber));
+                //OnPropertyChanged(nameof(FloorNumber));
+                SetPropertyValue(ref _floorNumber, value);
+
+            }
+        }
+
+        private bool NumberValidationTextBox()
+        {
+            Regex regex = new Regex("[^0-9]+");
+
+            if (regex.IsMatch(FloorNumber.Value.ToString()))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
